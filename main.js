@@ -1,26 +1,38 @@
 alert("Bienvenid@ al Sistema de Control Escolar. Ingresa la información del Alumno y Calcula sus Calificaciones")
 
-//Arrays de información necesaria para escalar el
+//Arrays de información necesaria para escalar el código
 let grupos1=["1°A", "1°B", "1°C"]
 let materias1=["Inglés", "Francés", "Matemáticas","Química","Deportes", "Artes","Lectura y Redacción"]
 let  alumnos1A=[]
+
 //Crear objeto para almacenar información de un alumno. 
-function Alumno(nombre, apellido, grupo){
+function Alumno(nombre, apellido, /*grupo*/){
         this.nombre=nombre;
         this.apellido=apellido;
-        this.grupo=grupo;
+        //this.grupo=grupo; Esto se va a utilizar más adelante 
+        //falta crearle una propiedad para la calificación de cada materia de su array de materias.
 }
 
-document.getElementById("crearAlumno").addEventListener("click",capturarAlumno)
-function capturarAlumno (){
-    let nuevoAlumno=prompt("¿Deseas crear un nuevo alumno? 1=Sí, 0=No");
-    if(nuevoAlumno=1){
-    const alumno1 = new Alumno({nombre: prompt("Ingresa tu nombre"), apellido: prompt("Ingresa tu apellido"), grupo: prompt("Ingresa tu grupo")});
+document.getElementById("crearAlumno").addEventListener("click",capturarAlumno) 
+function capturarAlumno (nombre, apellido){
+        var estudiante = new Alumno({nombre: prompt("Ingresa tu nombre"), apellido: prompt("Ingresa tu apellido"), /*grupo: prompt("Ingresa tu grupo")*/});
+        alumnos1A.push(estudiante)
+        alert(" El grupo ahora tiene " + alumnos1A.length + "miembro(s)")
     }
-}
 
-//Cálculo de Calificación del Alumno en 3 secciones.
-document.getElementsByClassName("alumno").addEventListener("click", capturarCalificaciones)
+// Display de Alumnos de 1A
+const lista1A= document.getElementsByClassName("lista1A")
+function imprimirAlumno (){
+    let li= document.createElement("li");
+    li.innerHTML= Alumno;
+    lista1A.appendChild(li);
+}
+ 
+alumnos1A.forEach(imprimirAlumno)
+ 
+
+/*Cálculo de Calificación del Alumno en 3 secciones.
+document.getElementsByTagName("alumno").addEventListener("click", capturarCalificaciones)
 function capturarCalificaciones () {
     const actividades= []
     let actividadesRealizadas=prompt("Ingresa el número de actividades realizadas en clase")
@@ -72,3 +84,4 @@ function capturarCalificaciones () {
     let calificacionFinal = promedioProyectos*0.5 + promedioProyectos*0.3 + calificacionExamen*0.2
     alert ("Tu calificación final es " + calificacionFinal)
 }
+*/
