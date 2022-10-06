@@ -6,29 +6,41 @@ let materias1=["Inglés", "Francés", "Matemáticas","Química","Deportes", "Art
 let  alumnos1A=[]
 
 //Crear objeto para almacenar información de un alumno. 
-function Alumno(nombre, apellido, /*grupo*/){
-        this.nombre=nombre;
-        this.apellido=apellido;
+class Alumno {
+    constructor(nombre,apellido,fecha,edad) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.fechaNacimiento=fecha; 
+        this.edad=edad; 
         //this.grupo=grupo; Esto se va a utilizar más adelante 
         //falta crearle una propiedad para la calificación de cada materia de su array de materias.
+    }
 }
 
 document.getElementById("crearAlumno").addEventListener("click",capturarAlumno) 
-function capturarAlumno (nombre, apellido){
-        var estudiante = new Alumno({nombre: prompt("Ingresa tu nombre"), apellido: prompt("Ingresa tu apellido"), /*grupo: prompt("Ingresa tu grupo")*/});
-        alumnos1A.push(estudiante)
+function capturarAlumno (){
+        var alumno1 = new Alumno({nombre: prompt("Ingresa tu nombre"), apellido: prompt("Ingresa tu apellido"), /*grupo: prompt("Ingresa tu grupo")*/});
+        alumnos1A.push(alumno1)
         alert(" El grupo ahora tiene " + alumnos1A.length + "miembro(s)")
+        alert("Creaste a "+ alumno1)
+        return alumno1
     }
 
 // Display de Alumnos de 1A
 const lista1A= document.getElementsByClassName("lista1A")
 function imprimirAlumno (){
     let li= document.createElement("li");
-    li.innerHTML= Alumno;
+    li.innerHTML= alumno1;
     lista1A.appendChild(li);
 }
  
 alumnos1A.forEach(imprimirAlumno)
+
+//Calcular edad del alumno con Luxon
+const now=Date.time.now();
+function calcularEdad(){
+    new Interval.fromISO(Alumno.edad,DateTime.now).toDuration('years').toObject();
+}
  
 
 /*Cálculo de Calificación del Alumno en 3 secciones.
