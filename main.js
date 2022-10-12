@@ -4,6 +4,7 @@ alert("Bienvenid@ al Sistema de Control Escolar. Ingresa la información del Alu
 let grupos1=["1°A", "1°B", "1°C"]
 let materias1=["Inglés", "Francés", "Matemáticas","Química","Deportes", "Artes","Lectura y Redacción"]
 let  alumnos1A=[]
+let alumno1
 
 //Crear objeto para almacenar información de un alumno. 
 class Alumno {
@@ -11,7 +12,7 @@ class Alumno {
         this.nombre = nombre;
         this.apellido = apellido;
         this.fechaNacimiento=fecha; 
-        this.edad=edad; 
+        this.edad=calcularEdad; 
         //this.grupo=grupo; Esto se va a utilizar más adelante 
         //falta crearle una propiedad para la calificación de cada materia de su array de materias.
     }
@@ -19,12 +20,16 @@ class Alumno {
 
 document.getElementById("crearAlumno").addEventListener("click",capturarAlumno) 
 function capturarAlumno (){
-        var alumno1 = new Alumno({nombre: prompt("Ingresa tu nombre"), apellido: prompt("Ingresa tu apellido"), /*grupo: prompt("Ingresa tu grupo")*/});
+        alumno1 = new Alumno({nombre: prompt("Ingresa el nombre"), apellido: prompt("Ingresa el apellido"), /*grupo: prompt("Ingresa tu grupo")*/});
         alumnos1A.push(alumno1)
         alert(" El grupo ahora tiene " + alumnos1A.length + "miembro(s)")
         alert("Creaste a "+ alumno1)
-        return alumno1
+        console.log(alumnos1A)
     }
+
+const verClaseConValor=()=>{console.log(alumnos1A)}
+document.getElementById('crearAlumno').addEventListener('click', capturarAlumno)
+document.getElementById('clase').addEventListener('click', verClaseConValor)
 
 // Display de Alumnos de 1A
 const lista1A= document.getElementsByClassName("lista1A")
@@ -39,7 +44,7 @@ alumnos1A.forEach(imprimirAlumno)
 //Calcular edad del alumno con Luxon
 const now=Date.time.now();
 function calcularEdad(){
-    new Interval.fromISO(Alumno.edad,DateTime.now).toDuration('years').toObject();
+    new Interval.fromISO(Alumno.edad,now).toDuration('years').toObject();
 }
  
 
