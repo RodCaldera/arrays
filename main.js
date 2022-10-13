@@ -34,8 +34,8 @@ document.getElementById('clase').addEventListener('click', verClaseConValor)
 // Display de Alumnos de 1A
 const lista1A= document.getElementsByClassName("lista1A")
 function imprimirAlumno (){
-    let li= document.createElement("li");
-    li.innerHTML= alumno1;
+    let li=document.createElement("li");
+    li.innerHTML= alumnos1A;
     lista1A.appendChild(li);
 }
  
@@ -47,7 +47,20 @@ function calcularEdad(){
     new Interval.fromISO(Alumno.edad,now).toDuration('years').toObject();
 }
  
-
+//Api de Cita del Día
+const cargarCita= async()=>{}
+    try{
+    const await cita= fetch('http://quotes.rest/qod.json');
+    consolelog (cita);
+    if (respuesta-status == 200){
+        const texto=await cita.jason();
+        console.log (cita);
+        }
+    } catch (error){
+        console.log (error);
+    }
+    
+cargarCita();
 /*Cálculo de Calificación del Alumno en 3 secciones.
 document.getElementsByTagName("alumno").addEventListener("click", capturarCalificaciones)
 function capturarCalificaciones () {
