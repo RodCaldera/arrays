@@ -3,66 +3,44 @@ alert("Bienvenid@ al Sistema de Control Escolar. Ingresa la información del Alu
 //Arrays de información necesaria para escalar el código
 let grupos1=["1°A", "1°B", "1°C"]
 let materias1=["Inglés", "Francés", "Matemáticas","Química","Deportes", "Artes","Lectura y Redacción"]
-let  alumnos1A=[]
+let  alumnos1A=[
+    {nombre:"Alumno", apellido:"dePrueba",edad:"18"}
+]
 let alumno1
 
 //Crear objeto para almacenar información de un alumno. 
 class Alumno {
-    constructor(nombre,apellido,fecha,edad) {
+    constructor(nombre,apellido,edad) {
         this.nombre = nombre;
         this.apellido = apellido;
-        this.fechaNacimiento=fecha; 
-        this.edad=calcularEdad; 
+        //this.fechaNacimiento=fecha; 
+        this.edad=edad; 
+        //this.calificacion=calificacion;
         //this.grupo=grupo; Esto se va a utilizar más adelante 
-        //falta crearle una propiedad para la calificación de cada materia de su array de materias.
     }
 }
 
-document.getElementById("crearAlumno").addEventListener("click",capturarAlumno) 
-function capturarAlumno (){
-        alumno1 = new Alumno({nombre: prompt("Ingresa el nombre"), apellido: prompt("Ingresa el apellido"), /*grupo: prompt("Ingresa tu grupo")*/});
-        alumnos1A.push(alumno1)
-        alert(" El grupo ahora tiene " + alumnos1A.length + "miembro(s)")
-        alert("Creaste a "+ alumno1)
-        console.log(alumnos1A)
-    }
-
-const verClaseConValor=()=>{console.log(alumnos1A)}
-document.getElementById('crearAlumno').addEventListener('click', capturarAlumno)
-document.getElementById('clase').addEventListener('click', verClaseConValor)
-
-// Display de Alumnos de 1A
-const lista1A= document.getElementsByClassName("lista1A")
-function imprimirAlumno (){
-    let li=document.createElement("li");
-    li.innerHTML= alumnos1A;
+function imprimirAlumno(Alumno){
+    let li= document.createElement("li");
+    li.innerHTML= Alumno.nombre + " " + Alumno.apellido;
     lista1A.appendChild(li);
-}
- 
-alumnos1A.forEach(imprimirAlumno)
-
-//Calcular edad del alumno con Luxon
-const now=Date.time.now();
-function calcularEdad(){
-    new Interval.fromISO(Alumno.edad,now).toDuration('years').toObject();
-}
- 
-//Api de Cita del Día
-const cargarCita= async()=>{}
-    try{
-    const await cita= fetch('http://quotes.rest/qod.json');
-    consolelog (cita);
-    if (respuesta-status == 200){
-        const texto=await cita.jason();
-        console.log (cita);
-        }
-    } catch (error){
-        console.log (error);
     }
+
+let lista1A=document.getElementById("lista1A")
+alumnos1A.forEach(imprimirAlumno) 
     
-cargarCita();
+document.getElementById("crearAlumno").addEventListener("click", capturarAlumno) 
+    function capturarAlumno (){
+        alumno1 = new Alumno({nombre: prompt("Ingresa el nombre"), apellido: prompt("Ingresa el apellido"), /*grupo: prompt("Ingresa tu grupo")*/ edad: prompt("Ingresa la edad")});
+        alumnos1A.push(alumno1)
+        alert("Creaste un nuevo alumno.")
+        alert(" El grupo ahora tiene " + alumnos1A.length + "miembro(s)")
+        imprimirAlumno
+        }
+
+
 /*Cálculo de Calificación del Alumno en 3 secciones.
-document.getElementsByTagName("alumno").addEventListener("click", capturarCalificaciones)
+document.getElementsByTagName("li").addEventListener("click", capturarCalificaciones)
 function capturarCalificaciones () {
     const actividades= []
     let actividadesRealizadas=prompt("Ingresa el número de actividades realizadas en clase")
