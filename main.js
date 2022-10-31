@@ -20,15 +20,20 @@ class Alumno {
     }
 }
 
+
+let lista1A=document.getElementById("lista1A")
+alumnos1A.forEach(imprimirAlumno) 
 function imprimirAlumno(Alumno){
     let li= document.createElement("li");
     li.innerHTML= Alumno.nombre + " " + Alumno.apellido;
     lista1A.appendChild(li);
+    /*let button = document.createElement("input");
+    button.type="button"
+    button.innerHTML="Capturar Calificación"
+    button.className="capturaCalificacion"
+    li.appendChild(button)*/
     }
 
-let lista1A=document.getElementById("lista1A")
-alumnos1A.forEach(imprimirAlumno) 
-    
 document.getElementById("crearAlumno").addEventListener("click", capturarAlumno) 
     function capturarAlumno (){
         alumno1 = new Alumno({nombre: prompt("Ingresa el nombre"), apellido: prompt("Ingresa el apellido"), /*grupo: prompt("Ingresa tu grupo")*/ edad: prompt("Ingresa la edad")});
@@ -38,9 +43,7 @@ document.getElementById("crearAlumno").addEventListener("click", capturarAlumno)
         imprimirAlumno
         }
 
-
-/*Cálculo de Calificación del Alumno en 3 secciones.
-document.getElementsByTagName("li").addEventListener("click", capturarCalificaciones)
+/*document.getElementById("capturaCalificacion").addEventListener("click", capturarCalificaciones)
 function capturarCalificaciones () {
     const actividades= []
     let actividadesRealizadas=prompt("Ingresa el número de actividades realizadas en clase")
